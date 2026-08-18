@@ -12,8 +12,8 @@ int DFS(int admat[5][5], int current, int visited[],int removeVertex)
 }
 
 void main(){
-    int edges[5][2] = {(0, 1),(1, 2), (1, 3), (2, 4), (3, 4)};
-    int admat[5][5] = {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 0}, {0, 1, 0, 0, 1}, {0, 1, 0, 0, 1}, {0, 0, 1, 1, 0}};
+    int edges[5][2] = {(0, 1),(1, 3), (2, 4), (3, 4)};
+    int admat[5][5] = {{0, 1, 0, 0, 0}, {1, 0, 0, 1, 0}, {0, 0, 0, 0, 1}, {0, 1, 0, 0, 1}, {0, 0, 1, 1, 0}};
     int ans[5]={-1};
     int ans_ind=0;
     
@@ -30,6 +30,6 @@ void main(){
         }
     }
     for(int i=0;i<ans_ind;i++){
-        printf("%d",ans[i]);
+        printf(" %d ",ans[i]);
     }
 }
