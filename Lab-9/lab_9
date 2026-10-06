@@ -1,0 +1,79 @@
+#include <stdio.h>
+
+int n, m;
+int graph[10][10];
+int set[10];
+int minSize = 999;
+
+int isTotalDominating() {
+    int i, j;
+
+    for (i = 0; i < n; i++) {
+        int dominated = 0;
+
+        for (j = 0; j < n; j++) {
+            if (graph[i][j] && set[j]) {
+                dominated = 1;
+                break;
+            }
+        }
+
+        if (!dominated)
+            return 0;
+    }
+
+    return 1;
+}
+
+void findSets(int pos, int size) {
+    int i;
+
+    if (pos == n) {
+        if (isTotalDominating()) {
+            printf("{");
+
+            for (i = 0; i < n; i++) {
+                if (set[i])
+                    printf("%d ", i + 1);
+            }
+
+            printf("}\n");
+
+            if (size < minSize)
+                minSize = size;
+        }
+        return;
+    }
+
+    set[pos] = 0;
+    findSets(pos + 1, size);
+
+    set[pos] = 1;
+    findSets(pos + 1, size + 1);
+
+    set[pos] = 0;
+}
+
+int main() {
+    int i, u, v;
+
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
+
+    printf("Enter number of edges: ");
+    scanf("%d", &m);
+
+    for (i = 0; i < m; i++) {
+        scanf("%d %d", &u, &v);
+
+        graph[u - 1][v - 1] = 1;
+        graph[v - 1][u - 1] = 1;
+    }
+
+    printf("\nTotal Dominating Sets:\n");
+    findSets(0, 0);
+
+    printf("\nTotal Domination Number = %d\n", minSize);
+
+    return 0;
+}
