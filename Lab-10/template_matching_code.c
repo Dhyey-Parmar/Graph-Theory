@@ -379,11 +379,11 @@ int main()
 {
     findMatching();
 
-    // findMaximalMatching();
+    findMaximalMatching();
 
-    // findMaximumMatching();
+    findMaximumMatching();
 
-    // findPerfectMatching();
+    findPerfectMatching();
 
     return 0;
 }
